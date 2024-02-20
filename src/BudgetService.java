@@ -18,9 +18,9 @@ public class BudgetService {
         }
 
         final Map<YearMonth, Double> budgetMap = budgetRepo.getAll().stream()
-                                                     .collect(Collectors.toMap(
-                                                             b -> YearMonth.parse(b.yearMonth, DateTimeFormatter.ofPattern("yyyyMM")),
-                                                             b -> b.amount));
+                                                           .collect(Collectors.toMap(
+                                                                   b -> YearMonth.parse(b.yearMonth, DateTimeFormatter.ofPattern("yyyyMM")),
+                                                                   b -> b.amount));
 
         if (YearMonth.from(start).equals(YearMonth.from(end))) {
             Double localAmount = budgetMap.get(YearMonth.from(end));
@@ -28,6 +28,7 @@ public class BudgetService {
             final int days = end.getDayOfMonth() - start.getDayOfMonth() + 1;
             return (localAmount / start.lengthOfMonth()) * days;
         }
+
         Double result = 0.0;
         LocalDate current = LocalDate.of(start.getYear(), start.getMonth(), 1);
         while (current.isBefore(end)) {
