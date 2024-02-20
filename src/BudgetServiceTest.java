@@ -65,4 +65,23 @@ public class BudgetServiceTest {
         );
     }
 
+    @Test
+    public void getMultipleYears() {
+        budgetRepo.setBudgets(
+                List.of(
+                        new Budget("202312", 310),
+                        new Budget("202401", 3100)
+                )
+        );
+
+        assertEquals(
+                210,
+                budgetService.query(
+                        LocalDate.of(2023, 12, 31),
+                        LocalDate.of(2024, 1, 2)
+                )
+        );
+
+    }
+
 }
