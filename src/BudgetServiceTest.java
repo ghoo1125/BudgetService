@@ -38,10 +38,10 @@ public class BudgetServiceTest {
         );
 
         assertEquals(
-                239,
+                139,
                 budgetService.query(
                         LocalDate.of(2024, 1, 31),
-                        LocalDate.of(2024, 4, 2)
+                        LocalDate.of(2024, 4, 1)
                 )
         );
     }

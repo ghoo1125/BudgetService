@@ -31,7 +31,7 @@ public class BudgetService {
 
         Double result = 0.0;
         LocalDate current = LocalDate.of(start.getYear(), start.getMonth(), 1);
-        while (current.isBefore(end)) {
+        while (current.isBefore(end) || current.isEqual(end)) {
             final YearMonth currentYearMonth = YearMonth.from(current);
 
             if (budgetMap.containsKey(currentYearMonth)) {
@@ -48,7 +48,6 @@ public class BudgetService {
                 }
             }
             current = current.plusMonths(1);
-
         }
 
         return result;
